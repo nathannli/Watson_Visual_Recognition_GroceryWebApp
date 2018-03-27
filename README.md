@@ -19,9 +19,9 @@ python app.py
 ## Built With
 
 * Python 3.6.4
-* Flask
-* IBM Watson's Python SDK - Visual Recognition
-* Jinja2
+* Flask 0.12.2
+* watson-developer-cloud 1.2.1
+* Jinja2 2.10
 
 
 ## Authors
