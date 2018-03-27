@@ -26,4 +26,8 @@ python app.py
 
 ## Authors
 
-* *Nathan Li* - Course project
+* *Nathan Li*
+* *Vy Nguyen*
+* *Polly Zhang*
+* *Marty Kang*
+* *Iris Zhang*
