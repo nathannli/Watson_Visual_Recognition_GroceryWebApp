@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Watson Visual Recognition Analyzer</title>
+<link rel=stylesheet type=css href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="/static/style.css?q=1280549780" type="text/css" charset="utf-8" />
+<div class=page>
+  <h1>Watson Visual Recognition Analyzer</h1>
+  
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

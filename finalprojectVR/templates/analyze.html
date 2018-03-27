@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class=metanav>
+        Pick an image to be analyzed:
+        <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+            <input type=file name=photo>
+            <input type=submit>
+        </form>  
+    </div>
+    <div>
+        <img src="{{url_for('static', filename='image/test.jpg')}}">
+    </div>
+    <div>
+        <form method=GET enctype=multipart/form-data action="{{ url_for('AnalyzeRequest') }}">
+            <button id="analyze_img" class="btn btn-primary">
+                <input type="submit" value="Analyze!!" class="btn btn-primary">
+            </button>
+        </form>
+    </div>
+
+
+    <dl>
+    {% for key, value in data.items() %}
+        <dt>{{ key|e }}:{{value|e}}</dt>
+    {% endfor %}
+    </dl>
+{% endblock %}
+
+
+       

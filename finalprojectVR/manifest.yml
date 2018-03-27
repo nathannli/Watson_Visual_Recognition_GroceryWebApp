@@ -1,0 +1,7 @@
+applications:
+- path: .
+  instances: 1
+  domain: mybluemix.net
+  name: finalprojectVR
+  host: finalprojectVR
+  buildpack: python_buildpack
