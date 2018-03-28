@@ -1,8 +1,9 @@
-import os
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from watson_developer_cloud import VisualRecognitionV3
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 import json
+import os
+
 
 
 vr = VisualRecognitionV3(
@@ -13,7 +14,11 @@ vr = VisualRecognitionV3(
 classifier_id = "Ringo_IdentifAI_867145316"
 
 
-app = Flask(__name__)               # create the application instance
+def create_app():
+    app = Flask(__name__)
+    return app
+
+app = create_app()
 app.config.from_object(__name__)    # load config from this file , flaskr.py
 photos = UploadSet("photos", IMAGES)
 
@@ -30,7 +35,7 @@ configure_uploads(app, photos)
 
 @app.route('/')
 def welcome():
-    return render_template('upload.html')
+    return render_template('layout.html')
 
 
 @app.route('/', methods=['POST'])
@@ -46,7 +51,7 @@ def upload():
 
 
 @app.route('/analyze', methods=['GET'])
-def AnalyzeRequest():
+def analyze_request():
     with open('static/image/test.jpg', 'rb') as image_file:
         classes = vr.classify(image_file, parameters=json.dumps({'classifier_ids':[classifier_id], 'threshold':0.6}))
     return render_template('analyze.html', data=classes['images'][0]['classifiers'][0]['classes'][0])
@@ -71,4 +76,4 @@ def dated_url_for(endpoint, **values):
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
-	app.run(host='0.0.0.0', port=int(port), debug=True)
+    app.run(host='0.0.0.0', port=int(port), debug=True)
