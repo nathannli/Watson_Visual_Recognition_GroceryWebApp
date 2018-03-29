@@ -11,7 +11,7 @@ vr = VisualRecognitionV3(
     api_key="843909e8ab8cbe39596df5ff4725d8a0fdb5e756"
 )
 
-classifier_id = "Ringo_IdentifAI_867145316"
+classifier_id = "Ringo_IdentifAIer_142334615"
 
 
 def create_app():
@@ -53,10 +53,26 @@ def upload():
 @app.route('/analyze', methods=['GET'])
 def analyze_request():
     with open('static/image/test.jpg', 'rb') as image_file:
-        classes = vr.classify(image_file, parameters=json.dumps({'classifier_ids':[classifier_id]}))
-        print(classes)
-    return render_template('analyze.html', data=classes['images'][0]['classifiers'][0]['classes'][0])
-
+        classes = vr.classify(image_file, parameters=json.dumps({
+            'classifier_ids':[classifier_id],
+            'threshold':0
+            }))
+    print(json.dumps(classes, indent=2))
+    results = classes['images'][0]['classifiers'][0]['classes']
+    top_3 = []
+    max_score = {"class":"","score":0}
+    max_index=0
+    while len(top_3) <2:
+        count = 0
+        for i in results:
+            if i["score"] > max_score["score"]:
+                max_score = i
+                max_index = count
+            count += 1
+        top_3.append(max_score)
+        max_score = {"class":"","score":0}
+        del results[max_index]
+    return render_template('analyze.html', data=top_3)
 
 
 @app.context_processor
