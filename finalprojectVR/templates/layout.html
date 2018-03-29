@@ -6,11 +6,11 @@
 <center>
 <div class=page>
   <div class=banner>
-    <img src="https://i.imgur.com/tCDY1qD.jpg" alt="logo" width="700">
+	<img src="https://i.imgur.com/tCDY1qD.jpg" alt="logo" width="700">
   </div>
 
   {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
+	<div class=flash>{{ message }}</div>
   {% endfor %}
  
 </div>
@@ -19,28 +19,26 @@
 
 <div class=page>
   <div class=metanav>
-    Pick an image to be analyzed:
-    <br><br>
-    <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
-        <button class="btn">
-            <input type=file name=photo>
-            <input type=submit>
-        </button>
-    </form>
+	Pick an image to be analyzed:
+	<br><br>
+	<form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+		<button class="btn">
+			<input type=file name=photo>
+			<input type=submit>
+		</button>
+	</form>
   </div>  
 
   <br><br>
   <div style="width:300px" class=metanav>
-    <img src="{{url_for('static', filename='image/test.jpg')}}" style="max-width:100%">
+	<img src="{{url_for('static', filename='image/test.jpg')}}" style="max-width:100%">
   </div>
   <br><br>
 
   <div class=metanav>
-    <form method=GET enctype=multipart/form-data action="{{ url_for('analyze_request') }}">
-        <button id="analyze_img" class="btn">
-            <input type="submit" value="Analyze!!">
-        </button>
-    </form>
+	<form method=GET enctype=multipart/form-data action="{{ url_for('analyze_request') }}">
+	  <input type="submit" value="Analyze!!" class="button">
+	</form>
   </div>
 </div>
 
