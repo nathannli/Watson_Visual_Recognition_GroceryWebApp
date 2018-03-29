@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 {% block results %}
-<div>
-    <dl>
+<div class=page>
+    <dl class=result>
+    {% set count = 0 %}
     {% for key, value in data.items() %}
-        <dt>{{ key|e }}:{{value|e}}</dt>
+        {% if count < 3 %}
+            {% if key == "class" %}
+                <dt><b>Class: {{value|e}}</b></dt>
+            {% else %}
+                <dt><b>Confidence: {{value|e}}</b></dt>
+            {% endif %}
+            {% set count = count + 1 %}
+        {% endif %}
     {% endfor %}
     </dl>
 </div>

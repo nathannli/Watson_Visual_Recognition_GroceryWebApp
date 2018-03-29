@@ -2,16 +2,17 @@
 
 body { 
 	font-family: 'Open Sans'; 
-	background: #ffffff; 
+	background: #e6e6e6; 
+	padding: 20px;
 }
 
 img {
   display: block;
-  margin:auto;
+	margin:auto;
+	border-radius: 10px;
 }
 
 .banner {
-	margin: auto;
 	border-bottom: 2px;
 	border-bottom-color: #ccc;
 	width: full;
@@ -20,6 +21,9 @@ img {
 }
 
 .page { 
+	width: 700px;
+	display: block;
+	margin: auto;
 	border: 5px solid #ffffff;
 	background: white; 
 }
@@ -42,12 +46,12 @@ img {
 	position: relative;
 	overflow: hidden;
 	display: inline-block;
-  }
+}
   
-  .btn {
-	border: 2px solid black;
+.btn {
+	border: 2px solid #f1f1f1;
 	color: gray;
-	background-color: white;
+	background-color: #f1f1f1;
 	padding: 8px 20px;
 	border-radius: 8px;
 	font-size: 20px;
@@ -56,20 +60,27 @@ img {
 	-moz-transition: border 0.5s;
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
-  }
+}
 
-  .btn:hover {
-	border: 2px solid #c46370;
+.btn:hover {
+	border: 2px solid #bb374d;
 	-webkit-transition: border 0.5s;
 	-moz-transition: border 0.5s;
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
-  }
+}
   
-  .upload-btn-wrapper input[type=submit] {
+.upload-btn-wrapper input[type=submit] {
 	font-size: 100px;
 	position: absolute;
 	left: 0;
 	top: 0;
 	opacity: 0;
-  }
+}
+
+.result {
+	border-radius: 25px;
+	border: 2px solid #000000;
+	padding: 10px;
+	width: 35%;	
+}

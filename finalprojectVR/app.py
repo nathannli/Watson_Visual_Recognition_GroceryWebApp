@@ -53,7 +53,8 @@ def upload():
 @app.route('/analyze', methods=['GET'])
 def analyze_request():
     with open('static/image/test.jpg', 'rb') as image_file:
-        classes = vr.classify(image_file, parameters=json.dumps({'classifier_ids':[classifier_id], 'threshold':0.6}))
+        classes = vr.classify(image_file, parameters=json.dumps({'classifier_ids':[classifier_id]}))
+        print(classes)
     return render_template('analyze.html', data=classes['images'][0]['classifiers'][0]['classes'][0])
 
 

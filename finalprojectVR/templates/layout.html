@@ -17,28 +17,31 @@
 
 {% block results %} {% endblock %}
 
-<div class=metanav>
-  Pick an image to be analyzed:
+<div class=page>
+  <div class=metanav>
+    Pick an image to be analyzed:
+    <br><br>
+    <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
+        <button class="btn">
+            <input type=file name=photo>
+            <input type=submit>
+        </button>
+    </form>
+  </div>  
+
   <br><br>
-  <form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
-      <button class="btn">
-          <input type=file name=photo>
-          <input type=submit>
-      </button>
-  </form>
-</div>  
+  <div style="width:300px" class=metanav>
+    <img src="{{url_for('static', filename='image/test.jpg')}}" style="max-width:100%">
+  </div>
+  <br><br>
 
-<div style="width:300px" class=metanav>
-  <img src="{{url_for('static', filename='image/test.jpg')}}" style="max-width:100%">
+  <div class=metanav>
+    <form method=GET enctype=multipart/form-data action="{{ url_for('analyze_request') }}">
+        <button id="analyze_img" class="btn">
+            <input type="submit" value="Analyze!!">
+        </button>
+    </form>
+  </div>
 </div>
-
-<div class=metanav>
-  <form method=GET enctype=multipart/form-data action="{{ url_for('analyze_request') }}">
-      <button id="analyze_img" class="btn">
-          <input type="submit" value="Analyze!!">
-      </button>
-  </form>
-</div>
-
 
 </center>
