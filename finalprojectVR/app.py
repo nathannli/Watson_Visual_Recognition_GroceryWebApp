@@ -26,7 +26,7 @@ app.config.update(dict(
     SECRET_KEY='development key',
     UPLOADED_PHOTOS_DEST="static/image"
 ))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+# app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 configure_uploads(app, photos)
 
 
@@ -38,7 +38,7 @@ def welcome():
     return render_template('layout.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/uploads', methods=['POST'])
 def upload():
     if request.method == 'POST' and 'photo' in request.files:
         if os.path.isfile("static/image/test.jpg"):
@@ -75,6 +75,7 @@ def analyze_request():
     return render_template('analyze.html', data=top_3)
 
 
+# to update the CSS so that cache wouldn't memorize the previous CSS
 @app.context_processor
 def override_url_for():
     return dict(url_for=dated_url_for)
@@ -83,8 +84,7 @@ def dated_url_for(endpoint, **values):
     if endpoint == 'static':
         filename = values.get('filename', None)
         if filename:
-            file_path = os.path.join(app.root_path,
-                                     endpoint, filename)
+            file_path = os.path.join(app.root_path, endpoint, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
 

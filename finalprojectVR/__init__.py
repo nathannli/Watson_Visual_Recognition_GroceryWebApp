@@ -1,1 +1,0 @@
-from vr import app
