@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block afterscan %} 
+
+<div class="vr-results">
+  
+
+    {% for d in data %}
+
+    <div class="vr-res-left">
+        <img src= {{ url_for('static', filename="image_database/"~ d["class"] ~".jpg") }} class="vr-res-img">
+    </div>
+
+    <div class="vr-res-right">
+        <div class="vr-res-text">{{ d["class"] }} {{ d["score"] }}</div>
+    </div>
+
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}
+
+{% block weight %} 
+
+<div class="weight">
+    {{ '%0.2f'| format(weight) }} kg
+</div>
+
+{% endblock %} 

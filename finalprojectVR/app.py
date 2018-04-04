@@ -1,24 +1,29 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from watson_developer_cloud import VisualRecognitionV3
 from flask_uploads import UploadSet, configure_uploads, IMAGES
+from random import uniform
 import json
 import os
 
 
+"""[summary]
 
+Returns:
+    [type] -- [description]
+"""
+
+
+## Watson Configurations ---------------------------------------------------------------------------
 vr = VisualRecognitionV3(
     "2016-05-20",
     api_key="843909e8ab8cbe39596df5ff4725d8a0fdb5e756"
 )
 
-classifier_id = "Ringo_IdentifAIer_142334615"
+classifier_id = "Ringo_IdentifAIer_2066606820"
 
 
-def create_app():
-    app = Flask(__name__)
-    return app
-
-app = create_app()
+## Flask Configurations ------------------------------------------------------------------------------
+app = Flask(__name__)               # creates an instance of Flask in app
 app.config.from_object(__name__)    # load config from this file , flaskr.py
 photos = UploadSet("photos", IMAGES)
 
@@ -26,20 +31,55 @@ app.config.update(dict(
     SECRET_KEY='development key',
     UPLOADED_PHOTOS_DEST="static/image"
 ))
-# app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 configure_uploads(app, photos)
 
 
+## App Data -------------------------------------------------------------------------------------
+
+# prices are listed in $/lb, referenced from loblaws online
+price_database_weight = {
+    "Pumpkin":4.00,
+    "Fresh Hothouse Tomato":1.00,
+    "Bok Choy":3.28,
+    "Fuji Apple":5.49,
+    "Red Delicious Apple":5.05,
+    "Granny Apple":5.49,
+    "Banana":1.52,
+    "Vine Tomato":4.68,
+    "Fresh Plum Tomato":5.49,
+    "Braeburn Apple":5.00,
+    "Nectarine":2.27,
+    "Peach":6.59,
+    "Cabbage":1.96,
+    "Napa Cabbage":3.28,
+    "Avocado":1.69,
+    "Grapefruit Pink":1.99,
+    "Kale":3.49,
+    "Romaine Lettuce":3.69,
+    "Mango":1.69,
+    "Parsley":1.99,
+    "Cilantro":2.99,
+    "Grapefruit White":2.00
+}
 
 
+## Website Routes -----------------------------------------------------------------------------
 
+# homepage
 @app.route('/')
 def welcome():
     return render_template('layout.html')
 
 
+# upload page
 @app.route('/uploads', methods=['POST'])
 def upload():
+    """[summary]
+    
+    Returns:
+        [type] -- [description]
+    """
+
     if request.method == 'POST' and 'photo' in request.files:
         if os.path.isfile("static/image/test.jpg"):
             os.remove("static/image/test.jpg")
@@ -50,30 +90,47 @@ def upload():
     return redirect(url_for('welcome'))
 
 
-@app.route('/analyze', methods=['GET'])
+# after clicking the analyze button
+@app.route('/aferscan', methods=['GET'])
 def analyze_request():
+    """[summary]
+    
+    Returns:
+        [type] -- [description]
+    """
+
+    weight = uniform(1,5)
+
     with open('static/image/test.jpg', 'rb') as image_file:
         classes = vr.classify(image_file, parameters=json.dumps({
             'classifier_ids':[classifier_id],
-            'threshold':0
+            'threshold':0.6
             }))
     print(json.dumps(classes, indent=2))
     results = classes['images'][0]['classifiers'][0]['classes']
-    top_3 = []
+    top_results = []
     max_score = {"class":"","score":0}
-    max_index=0
-    while len(top_3) <2:
+    max_index = 0
+
+    if len(results) < 3:
+        max_fruit = len(results)
+    else:
+        max_fruit = 3
+
+    while len(top_results) < max_fruit:
         count = 0
         for i in results:
             if i["score"] > max_score["score"]:
                 max_score = i
                 max_index = count
             count += 1
-        top_3.append(max_score)
+        top_results.append(max_score)
         max_score = {"class":"","score":0}
         del results[max_index]
-    return render_template('analyze.html', data=top_3)
+    return render_template('afterscan.html', data=top_results, weight=weight)
 
+
+## Other Configurations --------------------------------------------------------------------------------
 
 # to update the CSS so that cache wouldn't memorize the previous CSS
 @app.context_processor
@@ -90,7 +147,7 @@ def dated_url_for(endpoint, **values):
 
 
 
-
+## execute app locally on port 5000 --------------------------------------------------------------------
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(port), debug=True)

@@ -1,45 +1,144 @@
 <!doctype html>
+<html lang="en">
+
 <head>
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	<link rel=stylesheet type=text/css href= {{ url_for('static', filename='style.css') }}>
 </head>
 
 <center>
-<div class=page>
-  <div class=banner>
-	<img src="https://i.imgur.com/tCDY1qD.jpg" alt="logo" width="700">
-  </div>
 
-  {% for message in get_flashed_messages() %}
-	<div class=flash>{{ message }}</div>
-  {% endfor %}
- 
-</div>
+	<div class="header">
+		<img src="https://i.imgur.com/tCDY1qD.jpg" alt="logo" width="300">
+	</div>
 
-{% block results %} {% endblock %}
+	<div class="page">
+		{% for message in get_flashed_messages() %}
+			<div class="flash">{{ message }}</div>
+		{% endfor %}
 
-<div class=page>
-  <div class=metanav>
-	Pick an image to be analyzed:
-	<br><br>
-	<form method=POST enctype=multipart/form-data action="{{ url_for('upload') }}">
-		<button class="btn">
-			<input type=file name=photo>
-			<input type=submit>
-		</button>
-	</form>
-  </div>  
 
-  <br><br>
-  <div style="width:300px" class=metanav>
-	<img src="{{url_for('static', filename='image/test.jpg')}}" style="max-width:100%">
-  </div>
-  <br><br>
+<!-- left column................................................................................................................ -->
+		
+		<div class="left-column">
 
-  <div class=metanav>
-	<form method=GET enctype=multipart/form-data action="{{ url_for('analyze_request') }}">
-	  <input type="submit" value="Analyze!!" class="button">
-	</form>
-  </div>
-</div>
+			<div class="prod-img">
+
+				Pick an image to be analyzed:
+				<br><br>
+
+				<form method=POST enctype=multipart/form-data action= {{ url_for('upload') }}>
+					<button class="btn">
+						<input type=file name=photo>
+						<input type=submit>
+					</button>
+				</form>
+
+				<img src= {{ url_for('static', filename='image/test.jpg') }} style="max-height:100px">
+
+				<form method=GET enctype=multipart/form-data action= {{ url_for('analyze_request') }}>
+					<input type="submit" value="Analyze!!" class="analyze_btn">
+				</form>
+
+			</div>
+
+			<div class="groc-list">
+				<h1>Grocery list</h1>
+				<br>
+				<p>
+					one fish<br>
+					two fish<br>
+					red fish<br>
+					blue fish<br>
+				</p>
+			</div>
+
+			{% block weight %} 
+			<div class="weight">
+				0.000 kg
+			</div>
+			{% endblock %} 
+
+		</div>
+
+
+<!-- right column................................................................................................................ -->
+
+		<div class="right-column">
+
+			{% block afterscan %} 
+
+			<div class="vr-results">
+
+				<div class="vr-res-left">
+
+					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+
+				</div>
+
+				<div class="vr-res-right">
+
+					<div class="vr-res-text">Nothing Scanned</div>
+					<div class="vr-res-text">Nothing Scanned</div>
+					<div class="vr-res-text">Nothing Scanned</div>
+						
+				</div>
+
+			</div>
+
+			{% endblock %}
+
+			<div class="mansearch">Manual Search/Enter PLU</div>
+
+			<div class="pay">Finish and Pay</div>
+
+		</div>
+
+	</div>  <!-- end page tag -->
+
+
+<!-- footer .................................................................................................................... -->
+
+	<div class="footer">
+
+		<div class="footer-left">
+
+			<div class="helpbox">
+				<a class="helpbutton" href="#popup1">Help</a>
+			</div>
+
+		</div>
+		
+		<div class="footer-right">
+
+			<div class="helpbox">
+				<div class="time-box">date and time</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+<!-- popup overlay for footer ....................................................................................................... -->
+		
+	<div id="popup1" class="overlay">
+
+		<div class="popup">
+
+			<br><br>
+			<h2>Welcome to Ringo!</h2>
+			<a class="close" href="#">&times;</a>  <!-- the exit button of the popup -->
+
+			<div class="content">
+				Press ___ to begin scanning your fruits and veggies!
+			</div>
+
+		</div>
+
+	</div>
+
 
 </center>
+</html>

@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+/* layout.html css ====================================================================== */
+
 body { 
 	font-family: 'Open Sans'; 
 	background: #e6e6e6; 
 	padding: 20px;
+}
+
+h1 {
+	font-size:20px;
+	font-weight:bold;
+	text-align:left;
+}
+
+p {
+	font-size:15px;
+	text-align:left;
 }
 
 img {
@@ -12,28 +25,24 @@ img {
 	border-radius: 10px;
 }
 
-.banner {
-	border-bottom: 2px;
-	border-bottom-color: #ccc;
-	width: full;
-	display: block;
-	border: none;
-}
-
 .page { 
-	width: 700px;
+	overflow:hidden;
+	width: 70%;
 	display: block;
-	margin: auto;
-	border: 5px solid #ffffff;
+	margin-top: 110px;
+	border: 10px solid #ffffff;
 	background: white; 
 }
 
-.metanav { 
-	text-align: center;  
-	font-size: 20px;
-	margin-bottom: 1em; 
-	background: #ffffff; 
-	width: 35em
+.header {
+	display:block;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height: 105px;
+	background-color: #ffffff;
+	padding-top:10px;
 }
 
 .flash { 
@@ -42,12 +51,9 @@ img {
 	border: 1px solid #aacbe2; 
 }
 
-.upload-btn-wrapper {
-	position: relative;
-	overflow: hidden;
-	display: inline-block;
-}
-  
+
+/* Buttons CSS ------------------------------ */
+
 .btn {
 	border: 2px solid #f1f1f1;
 	color: gray;
@@ -60,6 +66,7 @@ img {
 	-moz-transition: border 0.5s;
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
+	margin-bottom: 10px;
 }
 
 .btn:hover {
@@ -69,36 +76,265 @@ img {
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
 }
-  
-/* .upload-btn-wrapper input[type=submit] {
-	font-size: 100px;
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0;
-} */
 
-.button {
+.analyze_btn {
 	display: inline-block;
+	font-family: 'Open Sans';
+	font-size: 18px;
+	font-weight: bold;
 	outline: none;
 	cursor: pointer;
 	text-align: center;
-	text-decoration: none;
-	font: 14px/100% Arial, Helvetica, sans-serif;
-	padding: .5em 2em .55em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em; 
-	-moz-border-radius: .5em;
-	border-radius: .5em;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	margin-top:10px;
+	padding: 10px;
+	width: 200px;
+	border: 2px solid #f1f1f1;
+	color: #000000;
+	background-color: #f1f1f1;
 }
 
-.button:active {
+.analyze_btn:active {
 	position: relative;
 	top: 1px;
 }
+
+
+/* Left Column CSS ------------------------------ */
+
+.left-column {
+	display:flex;
+	flex-direction: column;
+	width: 50%;
+	height: full;
+	float: left;
+	text-align: center;  
+	font-size: 20px;
+	margin-bottom: 1em; 
+	background: #ffffff; 
+}
+
+.prod-img{
+	padding:15px;
+}
+
+.groc-list {
+	font-weight: none;
+	font-size:20px;
+	background-color: #ffffff;
+	border: 2px solid #5f5f5f;
+	padding:15px;
+	margin:5px;
+	height:150px;
+	overflow-y: scroll;
+}
+
+.weight {
+	font-weight: bold;
+	text-align: right;
+	font-size:15px;
+	background-color: #f0f0f0;
+	border: 0px solid #5f5f5f;
+	padding:15px;
+	margin:5px;
+}
+
+.left-column > .prod-img {order:1;} /* Designates the order that the left-column elements appear in*/
+.left-column > .groc-list {order:3;}
+.left-column > .weight {order:2;} 
+
+
+/* Right Column CSS ------------------------------ */
+
+.right-column {
+	display:flex;
+	flex-direction: column;
+	float: right;
+	width: 50%;
+	height: full;
+	text-align: center;  
+	font-size: 20px;
+	background: #ffffff; 
+}
+
+.vr-results {
+	padding:15px;
+	margin-bottom:20px;
+}
+
+.vr-res-left {
+	width:30%;
+	float:left;
+}
+
+.vr-res-right {
+	width: 70%;
+	float:right;
+}
+
+.vr-res-img {
+	width:100px;
+	display:block;
+	height:100px;
+	border: 2px solid #ffffff;
+	padding: 5px;
+}
+
+.vr-res-text {
+	height: 100px;
+	line-height:100px;
+	text-align: left;
+	border: 2px solid #ffffff;
+	padding: 5px;
+	padding-left: 50px;
+}
+
+.mansearch {
+	font-size:20px;
+	border: 2px solid #5f5f5f;
+	padding:15px;
+	margin-top:15px;
+	margin:5px;
+}
+
+.pay {
+	font-weight: bold;
+	font-size:20px;
+	background-color: #a1e69f;
+	border: 2px solid #5f5f5f;
+	padding:15px;
+	margin:5px;
+}
+
+.time-box {
+	font-size:20px;
+	text-decoration: none;
+	line-height:40px;
+	display:block;
+	width:full;
+	color: #f7aaaa;
+	border: 2px solid #a0a0a0;
+}
+
+.right-column > .vr-results {order:1;} /* Designates the order that the right-column elements appear in*/
+.right-column > .mansearch {order:2;}
+.right-column > .pay {order:3;}
+
+
+/* Footer ------------------------------------------------- */
+
+.footer {
+	margin-top:10px;
+	position:center;
+	bottom:0;
+	left:0;
+	height: 60px;
+	width:100%;
+	background-color: #ffffff;
+	padding:10px;
+}
+
+.footer-left{
+	float:left;
+	width:50%;
+}
+
+.footer-right {
+	float:right;
+	width:50%;
+}
+
+
+/* CSS for help pop-up button ------------------------------ */
+
+.helpbox {	
+	width: 60%;
+	margin: 0 auto;
+	background: rgba(255,255,255,0.2);
+	padding: 10px;
+	text-align: center;
+}
+  
+.helpbutton {
+	text-decoration: none;
+	line-height:40px;
+	font-size: 20px;
+	display:block;
+	width:full;
+	color: #f7aaaa;
+	border: 2px solid #b16969;
+	border-radius: 0px;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+
+.helpbutton:hover {
+	background: #e0e0e0;
+}
+  
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+  
+.popup {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+  
+.popup h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.popup .close:hover {
+	color: #06D85F;
+}
+
+.popup .content {
+	max-height: 30%;
+	overflow: auto;
+}
+  
+ @media screen and (max-width: 700px) {
+	.box {
+		width: 70%;
+	}
+	.popup {
+		width: 70%;
+	}
+}
+
+
+/* analyze.html specific css ================================================================= */
 
 .result {
 	border-radius: 25px;
