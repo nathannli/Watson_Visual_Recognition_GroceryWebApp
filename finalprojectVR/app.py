@@ -133,9 +133,12 @@ def analyze_request():
 	# 		max_score = {"class":"","score":0}
 	# 		del results[max_index]
 
-	top_results.append({"class":"Banana", "score":0.9})
-	top_results.append({"class":"Bok Choy", "score":0.8})
-	top_results.append({"class":"Peach", "score":0.7})
+
+	# top_results.append({"class":"Banana", "score":0.9})
+	# top_results.append({"class":"Bok Choy", "score":0.8})
+	# top_results.append({"class":"Peach", "score":0.7})
+
+	top_results.append({"class":"Unidentified"})
 
 
 	print(json.dumps(top_results, indent=2))

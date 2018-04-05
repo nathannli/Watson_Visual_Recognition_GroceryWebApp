@@ -25,6 +25,15 @@
 			{% endfor %}
 		</div>
 
+	{% else %}
+
+		<div class="vr-res-left" style="width:45%">
+			<img src= {{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
+		</div>
+		<div class="vr-res-right">
+			<div class="vr-res-text">Watson isn't sure</div>
+		</div>
+
 	{% endif %}
 
 </div>
@@ -41,8 +50,3 @@
 
 
 
-{# {% if d["class"] == "Unidentified" %}
-					<img src= {{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
-
-{% if d["class"] == "Unidentified" %}
-					<div class="vr-res-text">Watson isn't sure</div> #}
