@@ -19,8 +19,8 @@
 
 		<div class="vr-res-right-add">
 			{% for d in data %}
-				<form method=POST class="vr-res-add-btn" action={{ url_for('add') }}>
-					<button name="chosen" value={{ d["class"] }} type="submit">Add</button>
+				<form method=POST action={{ url_for('add') }}>
+					<button name="chosen" value={{ d["class"] }} type="submit" class="vr-res-add-btn">Add</button>
 				</form>
 			{% endfor %}
 		</div>

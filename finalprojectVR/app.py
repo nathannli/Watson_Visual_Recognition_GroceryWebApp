@@ -77,7 +77,7 @@ WEIGHT = 0
 # homepage
 @app.route('/')
 def welcome():
-	return render_template('layout.html', receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"))
+	return render_template('layout.html', receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE)
 
 
 # upload page
@@ -152,7 +152,7 @@ def analyze_request():
 
 
 	print(json.dumps(top_results, indent=2))
-	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"))
+	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE)
 
 @app.route('/add_to_list', methods=['POST'])
 def add():
