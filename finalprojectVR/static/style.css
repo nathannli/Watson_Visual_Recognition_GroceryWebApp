@@ -54,6 +54,8 @@ img {
 
 /* Buttons CSS ------------------------------ */
 
+/* Upload image buttons ------------ */
+
 .btn {
 	border: 2px solid #f1f1f1;
 	color: gray;
@@ -67,6 +69,7 @@ img {
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .btn:hover {
@@ -76,6 +79,8 @@ img {
 	-o-transition: border 0.5s;
 	transition: border 0.5s;
 }
+
+/* Analyze image buttons ------------ */
 
 .analyze_btn {
 	display: inline-block;
@@ -91,6 +96,17 @@ img {
 	border: 2px solid #f1f1f1;
 	color: #000000;
 	background-color: #f1f1f1;
+	-webkit-transition: border 0.5s;
+	-moz-transition: border 0.5s;
+	-o-transition: border 0.5s;
+}
+
+.analyze_btn:hover {
+	border: 2px solid #bb374d;
+	-webkit-transition: border 0.5s;
+	-moz-transition: border 0.5s;
+	-o-transition: border 0.5s;
+	transition: border 0.5s;
 }
 
 .analyze_btn:active {
@@ -98,29 +114,29 @@ img {
 	top: 1px;
 }
 
-/*.add_btn {
-	display: inline-block;
-	font-family: 'Open Sans';
-	outline: none;
-	cursor: pointer;
-	text-align: left;
-	margin-top:10px;
-	padding: 10px;
-	width: 200px;
-	border: 2px solid #f1f1f1;
-	color: #000000;
+/* Add buttons ------------ */
+
+.vr-res-add-btn {
+	padding: 5px;
 	background-color: #f1f1f1;
 	font-size:12px;
-	text-transform: capitalize;
+	-webkit-transition: border 0.5s;
+	-moz-transition: border 0.5s;
+	-o-transition: border 0.5s;
 }
 
-.add_btn:active {
-	position: relative;
-	top: 1px;
-}*/
+.vr-res-add-btn:hover {
+	border: 2px solid #bb374d;
+	-webkit-transition: border 0.5s;
+	-moz-transition: border 0.5s;
+	-o-transition: border 0.5s;
+	transition: border 0.5s;
+}
 
 
 /* Left Column CSS ------------------------------ */
+
+/* Initial Config ------------- */
 
 .left-column {
 	display:flex;
@@ -134,9 +150,13 @@ img {
 	background: #ffffff; 
 }
 
+/* Scanned Image ---------- */
+
 .prod-img{
 	padding:15px;
 }
+
+/* Grocery Receipt Box ------------- */
 
 .groc-list {
 	font-weight: none;
@@ -149,6 +169,8 @@ img {
 	overflow-y: scroll;
 }
 
+/* Weight Box ------------- */
+
 .weight {
 	font-weight: bold;
 	text-align: right;
@@ -159,12 +181,16 @@ img {
 	margin:5px;
 }
 
+/* Left Column Other Configs ------------- */
+
 .left-column > .prod-img {order:1;} /* Designates the order that the left-column elements appear in*/
 .left-column > .groc-list {order:3;}
 .left-column > .weight {order:2;} 
 
 
 /* Right Column CSS ------------------------------ */
+
+/* Initial Config ------------- */
 
 .right-column {
 	display:flex;
@@ -176,6 +202,8 @@ img {
 	font-size: 20px;
 	background: #ffffff; 
 }
+
+/*Table that displays produce images, class names and confidence scores ----- */
 
 .vr-results {
 	padding:15px;
@@ -195,16 +223,6 @@ img {
 .vr-res-right-add {
 	width: 10%;
 	float:left;
-}
-
-.vr-res-add-btn {
-	height: 100px;
-	line-height:100px;
-	padding: 5px;
-	font-family: 'Open Sans';
-	background-color: #f1f1f1;
-	font-size:12px;
-	text-transform: capitalize;
 }
 
 .vr-res-img {
@@ -230,13 +248,33 @@ img {
 	padding-left: 50px;
 }
 
-.mansearch {
+/* Manual Search/Enter PLU Box --------------- */
+
+.mansearch-box {
 	font-size:20px;
 	border: 2px solid #5f5f5f;
 	padding:15px;
 	margin-top:15px;
 	margin:5px;
+	transition: all 0.3s ease-out;
 }
+
+.mansearch {
+	font-size:20px;
+	text-decoration: none;
+	font-size: 20px;
+	display:block;
+	color: #000000;
+	margin-top:15px;
+	margin:5px;
+	transition: all 0.3s ease-out;
+}
+
+.mansearch-box:hover {
+	background: #e9cda9;
+}
+
+/* Finish and Pay Box --------------- */
 
 .pay {
 	font-weight: bold;
@@ -246,6 +284,8 @@ img {
 	padding:15px;
 	margin:5px;
 }
+
+/* Date & Time Box --------------- */
 
 .time-box {
 	font-size:20px;
@@ -257,6 +297,8 @@ img {
 	border: 2px solid #1a1a1a;
 	background: #b4c4e7;
 }
+
+/*Right Column Other Configs ------------- */
 
 .right-column > .vr-results {order:1;} /* Designates the order that the right-column elements appear in*/
 .right-column > .mansearch {order:2;}
@@ -287,7 +329,47 @@ img {
 }
 
 
-/* CSS for help pop-up button ------------------------------ */
+/* ALL CSS pop-ups-------------------------- ------------------------------ */
+
+/* manual PLU add popup ######################## */
+
+.plu-enter {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+}
+  
+.plu-enter h2 {
+	margin-top: 0;
+	color: #333;
+	font-family: Tahoma, Arial, sans-serif;
+}
+
+.plu-enter .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+}
+
+.plu-enter .close:hover {
+	color: rgb(170, 37, 37);
+}
+
+.plu-enter .content {
+	max-height: 30%;
+	overflow: auto;
+}
+
+/* helpbox popup ######################## */
 
 .helpbox {	
 	width: 60%;
@@ -315,6 +397,9 @@ img {
 	background: #e0e0e0;
 }
   
+
+/* general popup ######################## */
+
 .overlay {
 	position: fixed;
 	top: 0;
@@ -376,6 +461,8 @@ img {
 		width: 70%;
 	}
 }
+
+/* popup CSS END ############################ */
 
 
 /* analyze.html specific css ================================================================= */

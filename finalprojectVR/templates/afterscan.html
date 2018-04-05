@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block afterscan %} 
 
+<!-- left column's visual recognition resulting class images & confidence scores .............. -->
+
 <div class="vr-results">
 
 	{% if data[0]["class"] != "Unidentified" %}
@@ -19,13 +21,15 @@
 
 		<div class="vr-res-right-add">
 			{% for d in data %}
-				<form method=POST action={{ url_for('add') }}>
-					<button name="chosen" value={{ d["class"] }} type="submit" class="vr-res-add-btn">Add</button>
+				<form method=POST action={{ url_for('add') }} style="height:110px; line-height:120px;">
+					<button name="chosen" value="{{ d["class"] }}" type="submit" class="vr-res-add-btn">Add</button>
 				</form>
 			{% endfor %}
 		</div>
 
 	{% else %}
+
+<!-- this is triggered when Watson returns nothing back .................. -->
 
 		<div class="vr-res-left" style="width:45%">
 			<img src={{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
@@ -39,6 +43,8 @@
 </div>
 
 {% endblock %}
+
+<!-- for displaying a randomly generated weight ........................ -->
 
 {% block weight %} 
 

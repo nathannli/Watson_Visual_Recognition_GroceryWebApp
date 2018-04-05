@@ -67,9 +67,23 @@ PRICE_DATABASE = {
 # grocery list
 GROCERY_LIST = {}
 
+def reset_grocerylist():
+	global GROCERY_LIST
+	GROCERY_LIST = {}
+
 
 # global variables
 WEIGHT = 0
+
+
+# receipt total
+def recalculate_subtotal():
+	global PRICE_DATABASE, GROCERY_LIST
+	total = 0
+	for produce, weight in GROCERY_LIST.items():
+		total += weight * GROCERY_LIST[produce]
+
+	return total
 
 
 ## Website Routes -----------------------------------------------------------------------------
@@ -77,7 +91,7 @@ WEIGHT = 0
 # homepage
 @app.route('/')
 def welcome():
-	return render_template('layout.html', receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE)
+	return render_template('layout.html', receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE, total=recalculate_subtotal())
 
 
 # upload page
@@ -129,30 +143,36 @@ def analyze_request():
 		max_fruit = 3
 
 
-	# if max_fruit == 0:
-	# 	top_results.append({"class":"Unidentified"})
-	# else:
-	# 	while len(top_results) < max_fruit:
-	# 		count = 0
-	# 		for i in results:
-	# 			if i["score"] > max_score["score"]:
-	# 				max_score = i
-	# 				max_index = count
-	# 			count += 1
-	# 		top_results.append(max_score)
-	# 		max_score = {"class":"","score":0}
-	# 		del results[max_index]
+	if max_fruit == 0:
+		top_results.append({"class":"Unidentified"})
+	else:
+		while len(top_results) < max_fruit:
+			count = 0
+			for i in results:
+				if i["score"] > max_score["score"]:
+					max_score = i
+					max_index = count
+				count += 1
+			top_results.append(max_score)
+			max_score = {"class":"","score":0}
+			del results[max_index]
 
 
-	top_results.append({"class":"Banana", "score":0.9})
-	top_results.append({"class":"Bok Choy", "score":0.8})
-	top_results.append({"class":"Peach", "score":0.7})
+# Testing Code START ##############################################################################################################################################
+# uncomment the lines below for testing purposes
+
+	# top_results.append({"class":"Banana", "score":0.9})
+	# top_results.append({"class":"Bok Choy", "score":0.8})
+	# top_results.append({"class":"Peach", "score":0.7})
 
 	# top_results.append({"class":"Unidentified"})
 
+# Testing Code END ##############################################################################################################################################
+
 
 	print(json.dumps(top_results, indent=2))
-	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE)
+	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"), db=PRICE_DATABASE, total=recalculate_subtotal())
+
 
 @app.route('/add_to_list', methods=['POST'])
 def add():
@@ -161,8 +181,14 @@ def add():
 	print("produce: ", produce)
 	GROCERY_LIST[produce] = WEIGHT
 	flash('Added')
-	return render_template('layout.html', receipt=GROCERY_LIST, db=PRICE_DATABASE, time=time.strftime("%Y-%m-%d %H:%M"))
+	return render_template('layout.html', receipt=GROCERY_LIST, db=PRICE_DATABASE, time=time.strftime("%Y-%m-%d %H:%M"), total=recalculate_subtotal())
 
+
+@app.route('/restart')
+def reset():
+	reset_grocerylist()
+	flash('Receipt has been erased')
+	return redirect(url_for('welcome'))
 	
 
 

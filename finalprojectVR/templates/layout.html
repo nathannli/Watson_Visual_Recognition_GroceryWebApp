@@ -21,6 +21,8 @@
 		
 		<div class="left-column">
 
+<!-- the upload and submit image box ..................................................... -->
+
 			<div class="prod-img">
 
 				Pick an image to be analyzed:
@@ -45,9 +47,10 @@
 				</form>
 			<div> -->
 
-
-
 			</div>
+
+
+<!-- grocery list receipt box ................................................................ -->
 
 			<div class="groc-list">
 				<h1>Grocery list</h1>
@@ -104,11 +107,12 @@
 
 			{% endblock %}
 
-			<div class="mansearch">Manual Search/Enter PLU</div>
+<!-- Enter PLU Code & Finish and Pay Box ....................................................................................... -->
 
-			<div class="pay">Finish and Pay</div>
+			<a class="mansearch mansearch-box" href="#plu-enter">Enter PLU</a>
+			<a class="pay" href="#popup_finishandpay">Finish and Pay</a>
 
-		</div>
+		</div>  <!-- end right column div tag -->
 
 	</div>  <!-- end page tag -->
 
@@ -133,6 +137,10 @@
 
 		</div>
 
+		<form action={{ url_for('reset') }} style="float:center">
+			<button>Erase Grocery List</button>
+		</form>
+
 	</div>
 
 
@@ -154,6 +162,47 @@
 
 	</div>
 
+<!-- popup overlay for Enter PLU  ....................................................................................................... -->
+
+	<div id="plu-enter" class="overlay">
+
+		<div class="plu-enter">
+
+			<br><br>
+			<a class="close" href="#">&times;</a>  <!-- the exit button of the popup -->
+
+			<div class="content">
+				<img src="https://i.imgur.com/gjNalkV.png" >
+			</div>
+
+		</div>
+
+	</div>
+
+
+<!-- popup overlay for finish and pay ....................................................................................................... -->
+
+	<div id="popup_finishandpay" class="overlay">
+
+		<div class="popup">
+
+			<br><br>
+			<h2>Ready to Pay?</h2>
+			<a class="close" href="#">&times;</a>  <!-- the exit button of the popup -->
+
+			<div class="content">
+				<h1>Subtotal: ${{ '%0.2f' | format(total) }} </h1>
+				<h1>Tax: $0.00</h1>
+				<h1>Your total comes to: ${{ '%0.2f' | format(total) }}</h1>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	
 
 </center>
 </html>
