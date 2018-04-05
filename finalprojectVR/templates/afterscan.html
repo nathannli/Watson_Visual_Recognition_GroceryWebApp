@@ -7,7 +7,7 @@
   
 		<div class="vr-res-left">
 			{% for d in data %}
-				<img src= {{ url_for('static', filename="image_database/"~ d["class"] ~".jpg") }} class="vr-res-img">
+				<img src={{ url_for('static', filename="image_database/"~ d["class"] ~".jpg") }} class="vr-res-img">
 			{% endfor %}
 		</div>
 
@@ -20,7 +20,7 @@
 		<div class="vr-res-right-add">
 			{% for d in data %}
 				<form method=POST class="vr-res-add-btn" action={{ url_for('add') }}>
-					<input type=submit name="chosen" value="Add">
+					<button name="chosen" value={{ d["class"] }} type="submit">Add</button>
 				</form>
 			{% endfor %}
 		</div>
@@ -28,7 +28,7 @@
 	{% else %}
 
 		<div class="vr-res-left" style="width:45%">
-			<img src= {{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
+			<img src={{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
 		</div>
 		<div class="vr-res-right">
 			<div class="vr-res-text">Watson isn't sure</div>

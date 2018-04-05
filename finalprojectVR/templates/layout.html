@@ -33,7 +33,7 @@
 					</button>
 				</form>
 
-				<img src= {{ url_for('static', filename='image/test.jpg') }} style="max-height:100px">
+				<img src={{ url_for('static', filename='image/test.jpg') }} style="max-height:100px">
 
 				<form method=GET enctype=multipart/form-data action={{ url_for('analyze_request') }}>
 					<input type="submit" value="Analyze!!" class="analyze_btn">
@@ -53,10 +53,17 @@
 				<h1>Grocery list</h1>
 				<br>
 				<p>
-					one fish<br>
-					two fish<br>
-					red fish<br>
-					blue fish<br>
+					<table>
+
+						{% for produce_name, weight in receipt.items() %}
+							<tr>
+								<td>{{ produce_name }}</td>
+								<td>{{ '%0.2f' | format(weight) }}kg</td>
+								<td>${{ '%0.2f' | format(db[produce_name] * weight) }}</td>
+							</tr>
+						{% endfor %}
+
+					</table>
 				</p>
 			</div>
 
@@ -121,7 +128,7 @@
 		<div class="footer-right">
 
 			<div class="helpbox">
-				<div class="time-box">date and time</div>
+				<div class="time-box">{{ time }}</div>
 			</div>
 
 		</div>

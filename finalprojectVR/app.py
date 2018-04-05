@@ -4,6 +4,8 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 from random import uniform
 import json
 import os
+import time
+
 
 
 """[summary]
@@ -37,7 +39,7 @@ configure_uploads(app, photos)
 ## App Data -------------------------------------------------------------------------------------
 
 # prices are listed in $/kg, referenced from loblaws online
-price_database_weight = {
+PRICE_DATABASE = {
 	"Pumpkin":4.00,
 	"Fresh Hothouse Tomato":1.00,
 	"Bok Choy":3.28,
@@ -62,13 +64,20 @@ price_database_weight = {
 	"Grapefruit White":2.00
 }
 
+# grocery list
+GROCERY_LIST = {}
+
+
+# global variables
+WEIGHT = 0
+
 
 ## Website Routes -----------------------------------------------------------------------------
 
 # homepage
 @app.route('/')
 def welcome():
-	return render_template('layout.html')
+	return render_template('layout.html', receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"))
 
 
 # upload page
@@ -99,7 +108,8 @@ def analyze_request():
 		[type] -- [description]
 	"""
 
-	weight = uniform(0.5,3)
+	global WEIGHT
+	WEIGHT = uniform(0.5,3)
 
 	with open('static/image/test.jpg', 'rb') as image_file:
 		classes = vr.classify(image_file, parameters=json.dumps({
@@ -134,23 +144,24 @@ def analyze_request():
 	# 		del results[max_index]
 
 
-	# top_results.append({"class":"Banana", "score":0.9})
-	# top_results.append({"class":"Bok Choy", "score":0.8})
-	# top_results.append({"class":"Peach", "score":0.7})
+	top_results.append({"class":"Banana", "score":0.9})
+	top_results.append({"class":"Bok Choy", "score":0.8})
+	top_results.append({"class":"Peach", "score":0.7})
 
-	top_results.append({"class":"Unidentified"})
+	# top_results.append({"class":"Unidentified"})
 
 
 	print(json.dumps(top_results, indent=2))
-	return render_template('afterscan.html', data=top_results, weight=weight)
+	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=time.strftime("%Y-%m-%d %H:%M"))
 
 @app.route('/add_to_list', methods=['POST'])
 def add():
-	print("entered")
-	values = request.values
-	print("test ", values)
+	global GROCERY_LIST, WEIGHT
+	produce = request.values.get("chosen")
+	print("produce: ", produce)
+	GROCERY_LIST[produce] = WEIGHT
 	flash('Added')
-	return render_template('layout.html')
+	return render_template('layout.html', receipt=GROCERY_LIST, db=PRICE_DATABASE, time=time.strftime("%Y-%m-%d %H:%M"))
 
 	
 

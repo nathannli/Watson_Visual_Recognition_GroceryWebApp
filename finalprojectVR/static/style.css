@@ -177,10 +177,13 @@ img {
 }
 
 .vr-res-add-btn {
-	/*padding-top: 65px;*/
 	height: 100px;
 	line-height:100px;
 	padding: 5px;
+	font-family: 'Open Sans';
+	background-color: #f1f1f1;
+	font-size:12px;
+	text-transform: capitalize;
 }
 
 .vr-res-img {
@@ -229,9 +232,10 @@ img {
 	text-decoration: none;
 	line-height:40px;
 	display:block;
-	width:full;
-	color: #f7aaaa;
-	border: 2px solid #a0a0a0;
+	width: full;
+	color: #000000;
+	border: 2px solid #1a1a1a;
+	background: #b4c4e7;
 }
 
 .right-column > .vr-results {order:1;} /* Designates the order that the right-column elements appear in*/
@@ -279,8 +283,9 @@ img {
 	font-size: 20px;
 	display:block;
 	width:full;
-	color: #f7aaaa;
-	border: 2px solid #b16969;
+	color: #000000;
+	border: 2px solid #1a1a1a;
+	background: #b4c4e7;
 	border-radius: 0px;
 	cursor: pointer;
 	transition: all 0.3s ease-out;
