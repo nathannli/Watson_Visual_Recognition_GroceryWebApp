@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<link rel=stylesheet type=text/css href= {{ url_for('static', filename='style.css') }}>
+	<link rel=stylesheet type=text/css href={{ url_for('static', filename='style.css') }}>
 </head>
 
 <center>
@@ -26,7 +26,7 @@
 				Pick an image to be analyzed:
 				<br><br>
 
-				<form method=POST enctype=multipart/form-data action= {{ url_for('upload') }}>
+				<form method=POST enctype=multipart/form-data action={{ url_for('upload') }}>
 					<button class="btn">
 						<input type=file name=photo>
 						<input type=submit>
@@ -35,9 +35,17 @@
 
 				<img src= {{ url_for('static', filename='image/test.jpg') }} style="max-height:100px">
 
-				<form method=GET enctype=multipart/form-data action= {{ url_for('analyze_request') }}>
+				<form method=GET enctype=multipart/form-data action={{ url_for('analyze_request') }}>
 					<input type="submit" value="Analyze!!" class="analyze_btn">
 				</form>
+
+			<!-- </div>
+				<form method=GET enctype=multipart/form-data action= {{ url_for('analyze_request') }}>
+					<input type="submit" value="Add" class="analyze_btn">
+				</form>
+			<div> -->
+
+
 
 			</div>
 
@@ -71,9 +79,9 @@
 
 				<div class="vr-res-left">
 
-					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
-					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
-					<img src= {{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+					<img src={{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+					<img src={{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
+					<img src={{ url_for('static', filename='image_database/not_found.jpg') }} class="vr-res-img">
 
 				</div>
 

@@ -2,20 +2,30 @@
 {% block afterscan %} 
 
 <div class="vr-results">
+
+	{% if data[0]["class"] != "Unidentified" %}
   
+		<div class="vr-res-left">
+			{% for d in data %}
+				<img src= {{ url_for('static', filename="image_database/"~ d["class"] ~".jpg") }} class="vr-res-img">
+			{% endfor %}
+		</div>
 
-    {% for d in data %}
+		<div class="vr-res-right">
+			{% for d in data %}
+				<div class="vr-res-text">{{ d["class"] }} {{ d["score"] }}</div>
+			{% endfor %}
+		</div>
 
-    <div class="vr-res-left">
-        <img src= {{ url_for('static', filename="image_database/"~ d["class"] ~".jpg") }} class="vr-res-img">
-    </div>
+		<div class="vr-res-right-add">
+			{% for d in data %}
+				<form method=POST class="vr-res-add-btn" action={{ url_for('add') }}>
+					<input type=submit name="chosen" value="Add">
+				</form>
+			{% endfor %}
+		</div>
 
-    <div class="vr-res-right">
-        <div class="vr-res-text">{{ d["class"] }} {{ d["score"] }}</div>
-    </div>
-
-    {% endfor %}
-
+	{% endif %}
 
 </div>
 
@@ -23,8 +33,16 @@
 
 {% block weight %} 
 
-<div class="weight">
-    {{ '%0.2f'| format(weight) }} kg
-</div>
+	<div class="weight">
+		{{ '%0.2f'| format(weight) }} kg
+	</div>
 
 {% endblock %} 
+
+
+
+{# {% if d["class"] == "Unidentified" %}
+					<img src= {{ url_for('static', filename="image_database/Unidentified.gif") }} class="vr-res-img-unidentified">
+
+{% if d["class"] == "Unidentified" %}
+					<div class="vr-res-text">Watson isn't sure</div> #}

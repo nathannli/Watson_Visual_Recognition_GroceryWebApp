@@ -27,7 +27,7 @@ img {
 
 .page { 
 	overflow:hidden;
-	width: 70%;
+	width: 80%;
 	display: block;
 	margin-top: 110px;
 	border: 10px solid #ffffff;
@@ -162,13 +162,25 @@ img {
 }
 
 .vr-res-left {
-	width:30%;
+	width:35%;
 	float:left;
 }
 
 .vr-res-right {
-	width: 70%;
-	float:right;
+	width: 55%;
+	float:left;
+}
+
+.vr-res-right-add {
+	width: 10%;
+	float:left;
+}
+
+.vr-res-add-btn {
+	/*padding-top: 65px;*/
+	height: 100px;
+	line-height:100px;
+	padding: 5px;
 }
 
 .vr-res-img {
@@ -179,11 +191,18 @@ img {
 	padding: 5px;
 }
 
+.vr-res-img-unidentified {
+	width:200px;
+	display:block;
+	border: 2px solid #ffffff;
+	padding: 5px;
+}
+
 .vr-res-text {
 	height: 100px;
 	line-height:100px;
 	text-align: left;
-	border: 2px solid #ffffff;
+	/*border: 2px solid #ffffff;*/
 	padding: 5px;
 	padding-left: 50px;
 }
