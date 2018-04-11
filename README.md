@@ -17,6 +17,10 @@ Navigate to the folder containing "app.py" with your terminal and run:
 ```
 python app.py
 ```
+Then open a private browser and enter into the URL:
+```
+localhost:5000
+```
 ## Built With
 
 * Python 3.6.4
