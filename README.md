@@ -5,7 +5,8 @@ visual recognition will allow fresh produce to be scanned just as fast as if
 if were to have a barcode.
 
 ## Getting Started
-Clone or download the repository
+Clone or download the repository. 
+
 Install dependences by running:
 ```
 pip install -r requirements.txt
@@ -16,12 +17,16 @@ Navigate to the folder containing "app.py" with your terminal and run:
 ```
 python app.py
 ```
+Then open a private browser and enter into the URL:
+```
+localhost:5000
+```
 ## Built With
 
 * Python 3.6.4
 * Flask 0.12.2
 * watson-developer-cloud 1.2.1
-* Jinja2 2.10
+* Jinja 2.10
 
 
 ## Authors
