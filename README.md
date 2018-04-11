@@ -22,7 +22,7 @@ python app.py
 * Python 3.6.4
 * Flask 0.12.2
 * watson-developer-cloud 1.2.1
-* Jinja2 2.10
+* Jinja 2.10
 
 
 ## Authors
