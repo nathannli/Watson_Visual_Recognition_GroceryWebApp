@@ -5,7 +5,8 @@ visual recognition will allow fresh produce to be scanned just as fast as if
 if were to have a barcode.
 
 ## Getting Started
-Clone or download the repository
+Clone or download the repository. 
+
 Install dependences by running:
 ```
 pip install -r requirements.txt
