@@ -61,10 +61,15 @@
 						{% for produce_name, weight in receipt.items() %}
 							<tr>
 								<td>{{ produce_name }}</td>
-								<td>{{ '%0.2f' | format(weight) }}kg</td>
-								<td>${{ '%0.2f' | format(db[produce_name] * weight) }}</td>
+								<td style="padding:0 10px 0 10px;">{{ '%0.2f' | format(weight) }}kg</td>
+								<td style="padding:0 10px 0 10px;">${{ '%0.2f' | format(db[produce_name]) }}/kg</td>
+								<td style="padding:0 10px 0 10px;">${{ '%0.2f' | format(db[produce_name] * weight) }}</td>
 							</tr>
 						{% endfor %}
+
+						<tr>
+							<td>Subtotal: ${{ '%0.2f' | format(total) }}</td>
+						</tr>
 
 					</table>
 				</p>
