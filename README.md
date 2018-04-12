@@ -32,8 +32,8 @@ localhost:5000
 
 ## Authors
 
-* *Nathan Li*
-* *Vy Nguyen*
-* *Polly Zhang*
-* *Marty Kang*
-* *Iris Zhang*
+* *[Nathan Li](https://www.linkedin.com/in/nathanli1995/)*
+* *[Vy Nguyen](https://www.linkedin.com/in/vyttng/)*
+* *[Polly Zhang](https://www.linkedin.com/in/polly-zhang/)*
+* *[Marty Kang](https://www.linkedin.com/in/kangmarty/)*
+* *[Iris Zhang](https://www.linkedin.com/in/iris-ziyuan-zhang-8042538a/)*
