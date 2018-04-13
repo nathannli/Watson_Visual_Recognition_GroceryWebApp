@@ -5,6 +5,7 @@ from random import uniform
 import json
 import os
 import datetime
+import timeit
 
 
 """[summary]
@@ -157,6 +158,8 @@ def analyze_request():
 		Redirects to the page afterscan.html, where it displays the results of the analysis
 	"""
 
+	# start_time = timeit.default_timer()			# used for timing performance during testing
+
 	global WEIGHT
 	WEIGHT = uniform(0.1,3)
 
@@ -189,7 +192,7 @@ def analyze_request():
 
 	def sort_key(results):
 		"""
-		A lambda function for the sorted function on line 201
+		An explicit lambda function for the sorted function on line 201
 		"""
 		return results["score"]	
 
@@ -214,6 +217,10 @@ def analyze_request():
 			del results[max_index]
 
 	# print(json.dumps(top_results, indent=2))
+
+	# stop_time = timeit.default_timer()
+	# print(stop_time - start_time)
+
 	return render_template('afterscan.html', data=top_results, weight=WEIGHT, receipt=GROCERY_LIST, time=reset_time(), db=PRICE_DATABASE, total=recalculate_subtotal())
 
 
