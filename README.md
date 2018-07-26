@@ -26,7 +26,7 @@ localhost:5000
 * Python 3.6.4
 * Flask 0.12.2
 * watson-developer-cloud 1.2.1
-    * you need to have [visual studio build tools](http://landinghub.visualstudio.com/visual-cpp-build-tools) installed to install this
+    * you need to have [visual studio build tools](https://visualstudio.microsoft.com/ja/downloads/?rr=https%3A%2F%2Fwww.google.co.jp%2F) installed to install this
 * Jinja 2.10
 
 
